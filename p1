@@ -1,0 +1,175 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Struktur til at gemme bydata
+typedef struct {
+    char navn[50];
+    float afstand; // i km fra Venedig
+    char kategori[20]; // Landskab, historisk, bjerge osv.
+    int budget_low[2];  // Lavt budget [0]: lav sæson, [1]: høj sæson
+    int budget_mid[2];  // Mellemklasse budget [0]: lav sæson, [1]: høj sæson
+    int budget_high[2]; // Luksus budget [0]: lav sæson, [1]: høj sæson
+} By;
+
+// Liste af byer omkring
+By byer[] = {
+    {"Treviso", 25, "landskab", {4800, 5000}, {8500, 9500}, {18000, 21000}},
+    {"Chioggia", 25, "landskab", {4500, 5000}, {8000, 9000}, {17000, 19000}},
+    {"Asolo", 50, "landskab", {5000, 6000}, {9000, 11000}, {19000, 24000}},
+    {"Rovigo", 55, "landskab", {4500, 5000}, {8000, 9000}, {16000, 19000}},
+    {"Belluno", 80, "bjerge", {4800, 5500}, {8500, 10500}, {18500, 23000}},
+    {"Padova", 30, "historisk", {5000, 5800}, {9000, 10500}, {19000, 24000}},
+    {"Monselice", 45, "historisk", {4500, 5000}, {8000, 9000}, {16000, 19000}},
+    {"Jesolo", 30, "landskab", {5000, 6000}, {9000, 11000}, {19500, 25000}},
+    {"Bassano del Grappa", 60, "bjerge", {4800, 5500}, {8500, 10000}, {18000, 22000}},
+    {"Lonigo", 70, "landskab", {4500, 5000}, {8000, 9000}, {15500, 18000}}
+};
+
+#define ANTAL_BYER (sizeof(byer) / sizeof(byer[0]))
+
+// Vis radiusvalg
+void vis_radiusvalg(int hoej_saeson) {
+    printf("\n--- Vaelg radius ---\n");
+    if (hoej_saeson) {
+        printf("[1=10-20 km, 2=20-40 km, 3=40-70 km, 4=70-100 km]\n");
+    } else {
+        printf("[1=5-15 km, 2=15-30 km, 3=30-45 km, 4=45-60 km, 5=60-75 km]\n");
+    }
+}
+
+// Filtrér efter radius
+void filter_radius(float min_radius, float max_radius) {
+    printf("\n--- Match med radius (%.1f-%.1f km) ---\n", min_radius, max_radius);
+    for (int i = 0; i < ANTAL_BYER; i++) {
+        if (byer[i].afstand >= min_radius && byer[i].afstand <= max_radius) {
+            printf("By: %s, Afstand: %.1f km\n", byer[i].navn, byer[i].afstand);
+        }
+    }
+}
+
+void vis_budgetsvalg(int hoej_saeson) {
+    printf("\n--- Vaelg budget ---\n");
+    if (hoej_saeson) {
+        printf("[1=, 2=20-40 km, 3=40-70 km, 4=70-100 km]\n");
+    } else {
+        printf("[1=5-15 km, 2=15-30 km, 3=30-45 km, 4=45-60 km, 5=60-75 km]\n");
+    }
+}
+
+// Filtrér efter budget
+void filter_budget(int budget_niveau, int hoej_saeson) {
+    printf("\n--- Match med budgetniveau ---\n");
+    for (int i = 0; i < ANTAL_BYER; i++) {
+        int budget = (budget_niveau == 1) ? byer[i].budget_low[hoej_saeson] :
+                     (budget_niveau == 2) ? byer[i].budget_mid[hoej_saeson] :
+                     byer[i].budget_high[hoej_saeson];
+        printf("By: %s, Budget: %d DKK\n", byer[i].navn, budget);
+    }
+}
+
+// Vis alle matches samlet
+void vis_alle_matches(char *kategori, float min_radius, float max_radius, int budget_niveau, int hoej_saeson) {
+    printf("\n--- Samlet liste over alle matches ---\n");
+    for (int i = 0; i < ANTAL_BYER; i++) {
+        if ((strcmp(byer[i].kategori, kategori) == 0) &&
+            (byer[i].afstand >= min_radius && byer[i].afstand <= max_radius)) {
+            int budget = (budget_niveau == 1) ? byer[i].budget_low[hoej_saeson] :
+                         (budget_niveau == 2) ? byer[i].budget_mid[hoej_saeson] :
+                         byer[i].budget_high[hoej_saeson];
+            printf("By: %s, Afstand: %.1f km, Budget: %d DKK\n", byer[i].navn, byer[i].afstand, budget);
+        }
+    }
+}
+
+int main() {
+    // Variabler til input
+    int hoej_saeson;     // 1 = Høj sæson, 0 = Lav sæson
+    float min_radius = 0, max_radius = 0;
+    char kategori[20];
+    int radius_valg, budget_niveau, klimavenlig;
+
+    // Spørgsmål 1: Periode
+    printf("Vil du rejse i hooj season (1) eller udenfor hooj season (2)? ");
+    scanf("%d", &hoej_saeson);
+    hoej_saeson = (hoej_saeson == 1) ? 1 : 0;
+
+    // Spørgsmål 2: Landskabstype
+    printf("Hvilken type oplevelse oonsker du? [1=landskab, 2=historisk, 3=bjerge]: ");
+    int valg;
+    scanf("%d", &valg);
+    if (valg == 1) strcpy(kategori, "landskab");
+    else if (valg == 2) strcpy(kategori, "historisk");
+    else if (valg == 3) strcpy(kategori, "bjerge");
+    else {
+        printf("Ugyldigt valg.\n");
+        return 1;
+    }
+
+    // Spørgsmål 3: Radius
+    vis_radiusvalg(hoej_saeson);
+    scanf("%d", &radius_valg);
+    if (hoej_saeson) {
+        if (radius_valg == 1) { min_radius = 10; max_radius = 20; }
+        else if (radius_valg == 2) { min_radius = 20; max_radius = 40; }
+        else if (radius_valg == 3) { min_radius = 40; max_radius = 70; }
+        else if (radius_valg == 4) { min_radius = 70; max_radius = 100; }
+        else {
+            printf("Ugyldigt valg.\n");
+            return 1;
+        }
+    } else {
+        if (radius_valg == 1) { min_radius = 5; max_radius = 15; }
+        else if (radius_valg == 2) { min_radius = 15; max_radius = 30; }
+        else if (radius_valg == 3) { min_radius = 30; max_radius = 45; }
+        else if (radius_valg == 4) { min_radius = 45; max_radius = 60; }
+        else if (radius_valg == 5) { min_radius = 60; max_radius = 75; }
+        else {
+            printf("Ugyldigt valg.\n");
+            return 1;
+        }
+    }
+
+    // Spørgsmål 4: Budget
+    printf("Hvad er dit budget (DKK)? [1=budget, 2=mellemklasse, 3=luksus]: ");
+    scanf("%d", &budget_niveau);
+    if (budget_niveau < 1 || budget_niveau > 3) {
+        printf("Ugyldigt budget! Indtast en vaerdi mellem 1 og 3.\n");
+        return 1;
+    }
+
+    // Filtrer og vis resultater
+    filter_radius(min_radius, max_radius);
+    filter_budget(budget_niveau, hoej_saeson);
+    vis_alle_matches(kategori, min_radius, max_radius, budget_niveau, hoej_saeson);
+    printf("\n");
+    // Spørgsmål 5: Klima
+    printf("Er du klimavenlig? [1=NEJ (Fly), 2=Bus, 3=El-bil, 4=International tog]: ");
+    scanf("%d", &klimavenlig);
+    if (klimavenlig < 1 || klimavenlig > 4) {
+        printf("Ugyldigt valg! Indtast en vaerdi mellem 1 og 4.\n");
+        return 1;
+    }
+    
+    printf("Transportmiddel: ");
+    switch (klimavenlig) {
+        case 1:
+            printf("Fly\n");
+            printf("Bemaerkning: Fly er en af de stoorste CO2-udledere. Overvej at redde naturen ved at vaelge et groennere alternativ!\n");
+            break;
+        case 2:
+            printf("Bus\n");
+            printf("Bemaerkning: Godt valg! En bus rejser med lavere CO2-udledning og hjaelper med at reducere luftforurening.\n");
+            break;
+        case 3:
+            printf("El-bil\n");
+            printf("Bemaerkning: Wow, du har reddet ca. 10 traeer og bidrager til en groonnere planet! 🌱\n");
+            break;
+        case 4:
+            printf("International tog\n");
+            printf("Bemaerkning: Fantastisk valg! Du har netop skaanet ca. 15 fisk og reduceret dit klimaaftryk betydeligt! 🐟\n");
+            break;
+    }
+
+    return 0;
+}
