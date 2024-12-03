@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define ANTAL_BYER 100
+
+typedef struct {
+    int index;
+    char navn[50];
+    char prisniveau[20];
+    int km_til_Venedig;
+    char Oplev_1[20];
+    char Oplev_2[20];
+    int km_DK_by;
+    int km_DK_Vluft;
+    int km_Vluft_by;
+} By;
+
+
+void laes_alle_byer(FILE *file, By by_array[], int *length);
+void print_by(By by);
+
+int main(void){
+    FILE *input_file_pointer;
+    int antal_byer = 0;
+    By by_array[ANTAL_BYER] = {0};  
+    
+
+    input_file_pointer = fopen("data.csv", "r");
+    if (input_file_pointer != NULL){
+
+        //indlæs alle byerne i et array af structs:
+        laes_alle_byer(input_file_pointer, by_array, &antal_byer);
+
+        fclose(input_file_pointer);
+    }
+
+    printf("Antal byer indlæst: %d\n", antal_byer);
+
+    //print ny header
+    printf("\n%-10s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", 
+           "Index", "By", "Prisniveau", "km_til_Venedig", "Oplev_1", "Oplev_2", 
+           "km_DK_by", "km_DK_Vluft", "km_Vluft_by");
+    
+    //print de indlæste byer
+    for (int i = 0; i < antal_byer; i++){
+        print_by(by_array[i]);
+    }
+
+
+    int pris_niveau;
+    printf("Hvad er dit budget? [1=budget, 2=mellemklasse, 3=luksus]: ");
+    scanf("%d", &pris_niveau);
+
+
+
+    return 0;
+}
+
+void print_by(By by){
+    
+    printf("%-10d %-15s %-15s %-15d %-15s %-15s %-15d %-15d %-15d\n", 
+         by.index, by.navn, by.prisniveau, by.km_til_Venedig, 
+           by.Oplev_1, by.Oplev_2, by.km_DK_by, by.km_DK_Vluft,
+           by.km_Vluft_by);
+}
+
+void laes_alle_byer(FILE *file, By by_array[], int *length){
+    By by;
+    int i = 0;
+
+    //læser headeren først
+    char header[256];
+    fgets(header, sizeof(header), file);
+
+    //indlæser filen i by_array
+    while (fscanf(file, "%d,%49[^,],%19[^,],%d,%49[^,],%49[^,],%d,%d,%d\n", 
+                   &by.index, by.navn, by.prisniveau, &by.km_til_Venedig, 
+                   by.Oplev_1, by.Oplev_2, &by.km_DK_by, &by.km_DK_Vluft,
+                   &by.km_Vluft_by) == 9) { // Tjek for 9 succesfuldt læste værdier
+        by_array[i] = by;
+        i++;
+
+        //stopper indlæsning, hvis vi når slutningen af filen eller overskrider arraystørrelsen
+        if (i >= ANTAL_BYER) {
+            break;
+        }
+    }
+
+    if (feof(file)) {
+        //opdaterer antallet af byer indlæst
+        *length = i;
+    } else {
+        printf("Fejl: Overskredet maksimalt antal byer.\n");
+    }
+}
