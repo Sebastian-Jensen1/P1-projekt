@@ -176,12 +176,15 @@ void laes_alle_byer(FILE *file, By by_array[], int *length){
 //funktion til at indlæse csvfil
 int laes_fra_fil(const char *filnavn, By by_array[], int *antal_byer){
     FILE *file = fopen("data.csv", "r");
-    if (file != NULL){
-
+    if (file == NULL){
+    printf("Filen kan ikke aabnes");
+    exit(EXIT_FAILURE);
+    
+    }
         //indlæs alle byerne i et array af structs:
         laes_alle_byer(file, by_array, antal_byer);
 
         fclose(file);
-    }
+    
     return 1;
 }
