@@ -68,6 +68,9 @@ void filtrer_byer(By by_array[], int *antal_byer){
     int oplevelses_valg_2;
     int radius;
     int prisklasse;
+    int transportmiddel;
+    int transportmiddel_2;
+    double co2;
 
     //radius
     printf("Vælg radius:\n1: 5-15 km\n2: 15-30 km\n3: 30-45 km\n4: 45-60 km\n5: 60-75 km\n");
@@ -116,11 +119,8 @@ void filtrer_byer(By by_array[], int *antal_byer){
     //VI SKAL NOK FINDE DET BEDSTE MATCH OG PRINTE CO2 FOR DET KUN. så det ikke er en del af for_loopet
 
     //beregner co2_udledning
-    int transportmiddel;
-    int transportmiddel_2;
-    double co2;
     // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
-    int antal_traer = co2 / 20.000;
+    int antal_traer = co2 / 20000;
 
     printf("Hvordan ønsker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
     scanf(" %d", &transportmiddel);
