@@ -23,6 +23,7 @@ void laes_alle_byer(FILE *file, By by_array[], int *length);
 void print_by(By by);
 By *filtrer_oplevelse(By by_array[], int *antal_byer, int valg);
 By *filtrer_radius(By by_array[], int *antal_byer, int valg_radius);
+By *filtrer_pris(By by_array[], int *antal_byer, int prisklasse);
 double beregn_co2_udledning(double afstand, int transportmiddel);
 void filtrer_byer(By by_array[], int *antal_byer);
 
@@ -64,7 +65,9 @@ int main(void){
 void filtrer_byer(By by_array[], int *antal_byer){
     int midl_antal_byer = 0;
     int oplevelses_valg;
+    int oplevelses_valg_2;
     int radius;
+    int prisklasse;
 
     //radius
     printf("Vaelg radius: 1=5-15 km, 2=15-30 km, 3=30-45 km, 4=45-60 km, 5=60-75 km\n");
@@ -79,12 +82,18 @@ void filtrer_byer(By by_array[], int *antal_byer){
     //radius slut
 
 
+    //vælg budget
+    printf("Vælg prisklasse:\n1: budget\n2: mellemklasse\n3: luksus\n");
+    scanf(" %d", &prisklasse);
+    filtrer_pris(by_array, antal_byer, prisklasse);
 
 
     
     //vælger oplevelse og gem byer som opfylder kriteriet i filtrerede_byer
     printf("Hvilken type oplevelse ønsker du? [1=Landskab, 2=Historisk, 3=Vand]: ");
     scanf(" %d", &oplevelses_valg);
+    printf("Vælg én anden oplevelse\n");
+    scanf(" %d", &oplevelses_valg_2);
     
     while (oplevelses_valg < 1 || oplevelses_valg > 3){
         printf("Vaelg mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: ");
@@ -99,6 +108,10 @@ void filtrer_byer(By by_array[], int *antal_byer){
     //printer vores recommendations
     for (int i = 0; i < *antal_byer; i++){
         printf("By: %s\n", by_array[i].navn);
+    }
+    if (*antal_byer > 1){
+        filtrer_oplevelse(by_array, antal_byer, oplevelses_valg_2);
+    }
     
     //VI SKAL NOK FINDE DET BEDSTE MATCH OG PRINTE CO2 FOR DET KUN. så det ikke er en del af for_loopet
 
@@ -106,8 +119,6 @@ void filtrer_byer(By by_array[], int *antal_byer){
     int transportmiddel;
     int transportmiddel_2;
     double co2;
-    // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
-    int antal_traer = co2 / 20.000;
 
     printf("Hvordan oensker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
     scanf(" %d", &transportmiddel);
@@ -122,11 +133,27 @@ void filtrer_byer(By by_array[], int *antal_byer){
         co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
     }
     
-    printf("Din rejse udleder omkring %0.2lf gram CO2.\n Dette svarer til hvad %d absorberer hvert år.\n ", co2, antal_traer);
-
+    printf("Din rejse udleder omkring %0.2lf gram CO2\n", co2);
     }
      
 }
+//funktion til filtrering af prisklasse
+By *filtrer_pris(By by_array[], int *antal_byer, int prisklasse){
+    int count = 0;
+
+    for (int i = 0; i < *antal_byer; i++) {
+        if ((prisklasse == 1 && strcmp(by_array[i].prisniveau, "Budget") == 0)       ||
+           (prisklasse == 2 && strcmp(by_array[i].prisniveau, "Mellemklasse") == 0)  ||
+           (prisklasse == 3 && strcmp(by_array[i].prisniveau, "Luksus") == 0)){
+           by_array[count++] = by_array[i]; 
+           }
+
+    }
+    *antal_byer = count;    //opdaterer antallet af filtrerede byer
+    return by_array;        //returner det nye array
+
+}
+
 // Funktion til beregning af CO2-udledning
 double beregn_co2_udledning(double afstand, int transportmiddel) {
     // CO2-udledning pr. km i gram
