@@ -108,7 +108,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
     //printer vores recommendations
     for (int i = 0; i < *antal_byer; i++){
         printf("By: %s\n", by_array[i].navn);
-    }
+    
     if (*antal_byer > 1){
         filtrer_oplevelse(by_array, antal_byer, oplevelses_valg_2);
     }
@@ -126,19 +126,20 @@ void filtrer_byer(By by_array[], int *antal_byer){
     scanf(" %d", &transportmiddel);
 
     //hvis man vælger fly skal man også fra lufthavnen til hidden gem
-    if (transportmiddel == 1){
+     if (transportmiddel == 1){
         co2 = beregn_co2_udledning(by_array[i].km_DK_Vluft, transportmiddel);
         printf("Hvordan oensker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by_array[i].navn);
         scanf(" %d", &transportmiddel_2);
         co2 += beregn_co2_udledning(by_array[i].km_Vluft_by, transportmiddel_2);
     } else {
-        co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
+       co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
     }
     
     printf("Din rejse udleder omkring %0.2lf gram CO2.\n Der skal %d træer til for at absorbere det på et år.\n ", co2, antal_traer);
     }
-     
-}
+    
+    }
+
 //funktion til filtrering af prisklasse
 By *filtrer_pris(By by_array[], int *antal_byer, int prisklasse){
     int count = 0;
