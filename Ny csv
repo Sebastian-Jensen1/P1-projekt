@@ -2,3 +2,39 @@ Index,By,Prisniveau,km_til_Venedig,Oplev_1,Oplev_2,km_DK_by,km_DK_Vluft,km_Vluft
 1,Verona,Mellemklasse,115,Historisk,Landskab,1500,1490,105
 2,Chioggia,Budget,52,Vand,Historisk,1510,1490,42
 3,Vicenza,Luksus,80,Historisk,Landskab,1490,1490,70
+4,Rovigo,Budget,55,Landskab,Historisk,1510,1500,50
+5,Padova,Mellemklasse,30,Landskab,Historisk,1495,1485,25
+6,Treviso,Mellemklasse,40,Landskab,Vand,1500,1485,30
+7,Jesolo,Mellemklasse,30,Vand,Landskab,1470,1465,25
+8,Belluno,Budget,80,Bjerg,Landskab,1530,1515,75
+9,Asolo,Luksus,50,Landskab,Historisk,1495,1485,40
+10,Monselice,Budget,45,Historisk,Religiøs,1500,1480,35
+11,San Donà di Piave,Budget,27,Historisk,Vand,1510,1490,22
+12,Montagnana,Budget,70,Historisk,Landskab,1520,1500,60
+13,Murano,Luksus,1.5,Vand,Historisk,1452,1450,1
+14,Burano,Luksus,7,Vand,Historisk,1455,1450,6
+15,Torcello,Luksus,10,Vand,Historisk,1455,1450,7
+16,Mira,Luksus,20,Landskab,Historisk,1475,1465,15
+17,Dolo,Luksus,25,Landskab,Historisk,1475,1465,20
+18,Cittadella,Luksus,60,Historisk,Landskab,1500,1490,50
+19,Marostica,Luksus,70,Historisk,Landskab,1510,1490,60
+20,Conegliano,Mellemklasse,50,Landskab,Historisk,1490,1480,45
+21,Portogruaro,Luksus,55,Historisk,Landskab,1495,1480,50
+22,Abano Terme,Luksus,45,Landskab,Spa,1485,1475,40
+23,Lido di Venezia,Luksus,10,Vand,Strand,1450,1450,8
+24,Spinea,Luksus,15,Landskab,Historisk,1455,1450,12
+25,Oderzo,Budget,25,Historisk,Landskab,1485,1470,20
+26,Castelfranco Veneto,Luksus,45,Historisk,Landskab,1500,1480,35
+27,Caorle,Luksus,60,Vand,Strand,1485,1475,50
+28,Sottomarina,Luksus,25,Vand,Landskab,1465,1455,20
+29,Feltre,Mellemklasse,90,Bjerg,Historisk,1530,1510,80
+30,Este,Budget,45,Landskab,Historisk,1485,1470,40
+31,Adria,Budget,55,Historisk,Landskab,1490,1475,45
+32,Arquà Petrarca,Luksus,55,Historisk,Landskab,1495,1480,50
+33,Rimini,Luksus,100,Vand,Strand,1470,1455,95
+34,Montebelluna,Mellemklasse,50,Landskab,Bjerg,1495,1480,45
+35,Vittorio Veneto,Mellemklasse,75,Bjerg,Historisk,1530,1505,70
+36,San Vito al Tagliamento,Luksus,75,Historisk,Landskab,1515,1500,70
+37,Lonigo,Budget,70,Historisk,Landskab,1510,1490,60
+38,Bassano del Grappa,Mellemklasse,60,Historisk,Bjerg,1505,1485,55
+39,Rovigo,Budget,55,Landskab,Historisk,1510,1500,50
