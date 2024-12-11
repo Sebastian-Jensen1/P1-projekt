@@ -135,7 +135,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
         co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
     }
     
-    printf("Din rejse udleder omkring %0.2lf gram CO2.\n Der skal %d til for at absorbere det på et år.\n ", co2, antal_traer);
+    printf("Din rejse udleder omkring %0.2lf gram CO2.\n Der skal %d træer til for at absorbere det på et år.\n ", co2, antal_traer);
     }
      
 }
