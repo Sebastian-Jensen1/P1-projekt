@@ -119,6 +119,8 @@ void filtrer_byer(By by_array[], int *antal_byer){
     int transportmiddel;
     int transportmiddel_2;
     double co2;
+    // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
+    int antal_traer = co2 / 20.000;
 
     printf("Hvordan oensker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
     scanf(" %d", &transportmiddel);
@@ -133,7 +135,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
         co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
     }
     
-    printf("Din rejse udleder omkring %0.2lf gram CO2\n", co2);
+    printf("Din rejse udleder omkring %0.2lf gram CO2.\n Der skal %d til for at absorbere det på et år.\n ", co2, antal_traer);
     }
      
 }
