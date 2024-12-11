@@ -70,11 +70,11 @@ void filtrer_byer(By by_array[], int *antal_byer){
     int prisklasse;
 
     //radius
-    printf("Vaelg radius: 1=5-15 km, 2=15-30 km, 3=30-45 km, 4=45-60 km, 5=60-75 km\n");
+    printf("Vælg radius:\n1: 5-15 km\n2: 15-30 km\n3: 30-45 km\n4: 45-60 km\n5: 60-75 km\n");
     scanf(" %d", &radius);
 
     while (radius < 1 || radius > 8){
-        printf("Vaelg mellem: 1=5-15 km, 2=15-30 km, 3=30-45 km, 4=45-60 km, 5=60-75 km\n");
+        printf("Vælg radius: 1: 5-15 km\n2: 15-30 km\n3: 30-45 km\n4: 45-60 km\n5: 60-75 km\n");
         scanf(" %d", &radius);
     }
 
@@ -90,13 +90,13 @@ void filtrer_byer(By by_array[], int *antal_byer){
 
     
     //vælger oplevelse og gem byer som opfylder kriteriet i filtrerede_byer
-    printf("Hvilken type oplevelse ønsker du? [1=Landskab, 2=Historisk, 3=Vand]: ");
+    printf("Hvilken type oplevelse ønsker du primært?\n1: Landskab\n2: Historisk\n3: Vand\n");
     scanf(" %d", &oplevelses_valg);
-    printf("Vælg én anden oplevelse\n");
+    printf("Hvilken type oplevelse ønsker du sekundært\n");
     scanf(" %d", &oplevelses_valg_2);
     
     while (oplevelses_valg < 1 || oplevelses_valg > 3){
-        printf("Vaelg mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: ");
+        printf("Vælg mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: ");
         scanf(" %d", &oplevelses_valg);
     }
     
@@ -122,20 +122,20 @@ void filtrer_byer(By by_array[], int *antal_byer){
     // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
     int antal_traer = co2 / 20.000;
 
-    printf("Hvordan oensker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
+    printf("Hvordan ønsker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
     scanf(" %d", &transportmiddel);
 
     //hvis man vælger fly skal man også fra lufthavnen til hidden gem
      if (transportmiddel == 1){
         co2 = beregn_co2_udledning(by_array[i].km_DK_Vluft, transportmiddel);
-        printf("Hvordan oensker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by_array[i].navn);
+        printf("Hvordan ønsker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by_array[i].navn);
         scanf(" %d", &transportmiddel_2);
         co2 += beregn_co2_udledning(by_array[i].km_Vluft_by, transportmiddel_2);
     } else {
        co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
     }
     
-    printf("Din rejse udleder omkring %0.2lf gram CO2.\n Der skal %d træer til for at absorbere det på et år.\n ", co2, antal_traer);
+    printf("Din rejse udleder omkring %0.2lf gram CO2 pr, passager.\n Der skal %d træer til for at absorbere det på et år.\n ", co2, antal_traer);
     }
     
     }
