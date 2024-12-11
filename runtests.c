@@ -23,6 +23,7 @@ void laes_alle_byer(FILE *file, By by_array[], int *length);
 void print_by(By by);
 By *filtrer_oplevelse(By by_array[], int *antal_byer, int valg);
 By *filtrer_radius(By by_array[], int *antal_byer, int valg_radius);
+double beregn_co2_udledning(double afstand, int transportmiddel);
 void filtrer_byer(By by_array[], int *antal_byer);
 
 
@@ -37,7 +38,7 @@ int main(void){
     printf("Antal byer indlæst: %d\n", antal_byer);
 
     //printer ny header. fjernes i det endelige program
-    printf("\n%-10s %-15s %-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", 
+    printf("\n%-10s %-25s %-15s %-15s %-15s %-15s %-10s %-13s %-13s\n", 
            "Index", "By", "Prisniveau", "km_til_Venedig", "Oplev_1", "Oplev_2", 
            "km_DK_by", "km_DK_Vluft", "km_Vluft_by");
     
@@ -95,10 +96,53 @@ void filtrer_byer(By by_array[], int *antal_byer){
 
 
 
-
-    //printer vores recommendation
+    //printer vores recommendations
     for (int i = 0; i < *antal_byer; i++){
         printf("By: %s\n", by_array[i].navn);
+    
+    //VI SKAL NOK FINDE DET BEDSTE MATCH OG PRINTE CO2 FOR DET KUN. så det ikke er en del af for_loopet
+
+    //beregner co2_udledning
+    int transportmiddel;
+    int transportmiddel_2;
+    double co2;
+
+    printf("Hvordan oensker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
+    scanf(" %d", &transportmiddel);
+
+    //hvis man vælger fly skal man også fra lufthavnen til hidden gem
+    if (transportmiddel == 1){
+        co2 = beregn_co2_udledning(by_array[i].km_DK_Vluft, transportmiddel);
+        printf("Hvordan oensker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by_array[i].navn);
+        scanf(" %d", &transportmiddel_2);
+        co2 += beregn_co2_udledning(by_array[i].km_Vluft_by, transportmiddel_2);
+    } else {
+        co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
+    }
+    
+    printf("Din rejse udleder omkring %0.2lf gram CO2\n", co2);
+    }
+     
+}
+// Funktion til beregning af CO2-udledning
+double beregn_co2_udledning(double afstand, int transportmiddel) {
+    // CO2-udledning pr. km i gram
+    const double CO2_FLY = 285.0;       // Fly
+    const double CO2_BUS = 68.0;        // Bus
+    const double CO2_ELBIL = 20.0;      // El-bil
+    const double CO2_TOG = 14.0;        // Tog
+
+    switch (transportmiddel) {
+        case 1: // Fly
+            return afstand * CO2_FLY;
+        case 2: // Bus
+            return afstand * CO2_BUS;
+        case 3: // El-bil
+            return afstand * CO2_ELBIL;
+        case 4: // Tog
+            return afstand * CO2_TOG;
+        default:
+            return -1; // Ugyldigt transportmiddel
     }
 }
 
@@ -142,7 +186,7 @@ By *filtrer_oplevelse(By by_array[], int *antal_byer, int valg_opl){
 //funktion til at printe en by
 void print_by(By by){
     
-    printf("%-10d %-15s %-15s %-15d %-15s %-15s %-15d %-15d %-15d\n", 
+    printf("%-10d %-25s %-15s %-15d %-15s %-15s %-10d %-13d %-13d\n", 
          by.index, by.navn, by.prisniveau, by.km_til_Venedig, 
            by.oplev_1, by.oplev_2, by.km_DK_by, by.km_DK_Vluft,
            by.km_Vluft_by);
@@ -161,7 +205,7 @@ void laes_alle_byer(FILE *file, By by_array[], int *length){
     while (fscanf(file, "%d,%49[^,],%19[^,],%d,%49[^,],%49[^,],%d,%d,%d\n", 
                    &by.index, by.navn, by.prisniveau, &by.km_til_Venedig, 
                    by.oplev_1, by.oplev_2, &by.km_DK_by, &by.km_DK_Vluft,
-                   &by.km_Vluft_by) == 9) { // Tjek for 9 succesfuldt læste værdier
+                   &by.km_Vluft_by) == 9) { 
         by_array[i] = by;
         i++;
 
@@ -177,14 +221,13 @@ void laes_alle_byer(FILE *file, By by_array[], int *length){
 int laes_fra_fil(const char *filnavn, By by_array[], int *antal_byer){
     FILE *file = fopen("data.csv", "r");
     if (file == NULL){
-    printf("Filen kan ikke aabnes");
-    exit(EXIT_FAILURE);
-    
-    }
+        exit(EXIT_FAILURE);
+    } else {
+
         //indlæs alle byerne i et array af structs:
         laes_alle_byer(file, by_array, antal_byer);
 
         fclose(file);
-    
+    }
     return 1;
 }
