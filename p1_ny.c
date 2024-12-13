@@ -143,7 +143,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
     }
     // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
     int antal_traer = co2 / 20000;
-    printf("Din rejse udleder omkring %0.2lf gram CO2 pr, passager.\n Der skal %d træer til for at absorbere det på et år.\n ", co2, antal_traer);
+    printf("Din rejse udleder omkring %0.2lf gram CO2 pr, passager.\nDer skal %d træer til for at absorbere det på et år.\n", co2, antal_traer);
     }
     
     }
@@ -305,4 +305,3 @@ int laes_fra_fil1(const char *filnavn, By by_array[]) {
     fclose(file1);
     return 1;
 }
-
