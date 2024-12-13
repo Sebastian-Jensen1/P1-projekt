@@ -18,7 +18,6 @@ typedef struct {
 } By;
 
 
-
 int laes_fra_fil(const char *filnavn, By by_array[], int *antal_byer);
 void laes_alle_byer(FILE *file, By by_array[], int *length);
 void print_by(By by);
@@ -28,7 +27,6 @@ By *filtrer_pris(By by_array[], int *antal_byer, int prisklasse);
 double beregn_co2_udledning(double afstand, int transportmiddel);
 void filtrer_byer(By by_array[], int *antal_byer);
 int laes_fra_fil1(const char *filnavn, By by_array[]);
-
 
 
 int main(void){
@@ -106,7 +104,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
     scanf(" %d", &oplevelses_valg_2);
     
     while (oplevelses_valg < 1 || oplevelses_valg > 3){
-        printf("Vælg mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: ");
+        printf("Vælg venligst mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: ");
         scanf(" %d", &oplevelses_valg);
     }
     
@@ -142,8 +140,13 @@ void filtrer_byer(By by_array[], int *antal_byer){
        co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
     }
     // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
+    
     int antal_traer = co2 / 20000;
-    printf("Din rejse udleder omkring %0.2lf gram CO2 pr, passager.\nDer skal %d træer til for at absorbere det på et år.\n", co2, antal_traer);
+    if (antal_traer > 1){
+    printf("Din rejse udleder omkring %0.2lf gram CO2 pr, passager.\n Der skal %d træer til for at absorbere det på et år.\n", co2, antal_traer);
+    } else {
+    printf("Din rejse udleder omkring %0.2lf gram CO2 pr, passager.\n Der skal %d træ til for at absorbere det på et år.\n", co2, antal_traer);
+    } 
     }
     
     }
@@ -305,3 +308,4 @@ int laes_fra_fil1(const char *filnavn, By by_array[]) {
     fclose(file1);
     return 1;
 }
+
