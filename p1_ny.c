@@ -34,7 +34,7 @@ int main(void){
     By by_array[ANTAL_BYER] = {0};  
 
     printf("Hej og velkommen til vores hiddengem guide til Veneto!\n");
-    printf("Her vil vi stille dig en række spørgsmål der hjælper dig til at finde det perfekte alternativ til det overturistiske Venedig.\n");
+    printf("Vi vil stille dig en række spørgsmål der hjælper dig til at finde det perfekte alternativ til det overturistiske Venedig.\n");
     
     laes_fra_fil("data.csv", by_array, &antal_byer);
 
@@ -48,51 +48,47 @@ int main(void){
 //her kalder vi alle vores funktioner og printer vores recommendation
 //*antal_byer er en pointer fra de funktioner vi kalder, fordi antallet af byer ændrer sig undervejs
 void filtrer_byer(By by_array[], int *antal_byer){
-    //int midl_antal_byer = 0;
     int oplevelses_valg;
     int oplevelses_valg_2;
     int radius;
     int prisklasse;
     int transportmiddel;
     int transportmiddel_2;
+    int random_valg;
     double co2;
 
     //vælg afstand til Venedig
-    printf("Hvor langt må byen være fra Venedig:\n1: 5-30 km\n2: 31-60 km\n3: 61+ km\n");
+    printf("\nHvor langt må byen være fra Venedig?\n1: 5-30 km\n2: 31-60 km\n3: 61+ km\n");
     scanf(" %d", &radius);
 
     while (radius < 1 || radius > 3){
-        printf("Ugyldig værdi. Venligst vælg fra listen:\n1: 5-30 km\n2: 31-60 km\n3: 61+ km\n");
+        printf("\nUgyldig værdi. Venligst vælg fra listen:\n1: 5-30 km\n2: 31-60 km\n3: 61+ km\n");
         scanf(" %d", &radius);
     }
 
     filtrer_radius(by_array, antal_byer, radius);
 
-    printf("\n");
 
     //vælg budget
-    printf("Vælg prisklasse:\n1: budget\n2: mellemklasse\n3: luksus\n");
+    printf("\nVælg prisklasse:\n1: budget\n2: mellemklasse\n3: luksus\n");
     scanf(" %d", &prisklasse);
     filtrer_pris(by_array, antal_byer, prisklasse);
 
-    printf("\n");
     
     //vælger oplevelse og gem byer som opfylder kriteriet i filtrerede_byer
-    printf("Hvilken omgivelser øsnker du mest?\n1: Smukke landskaber\n2: Historiske seværdigheder\n3: Aktiviteter ved vandet\n");
+    printf("\nHvilken omgivelser øsnker du mest?\n1: Smukke landskaber\n2: Historiske seværdigheder\n3: Aktiviteter ved vandet\n");
     scanf(" %d", &oplevelses_valg);
     
-    printf("Hvad går du mest op i at lave på din rejse:\n1: Aktive oplevelser\n2: Afslapning\n3: Kulinariske oplevelser\n");
+    printf("\nHvad går du mest op i at lave på din rejse:\n1: Aktive oplevelser\n2: Afslapning\n3: Kulinariske oplevelser\n");
     scanf(" %d", &oplevelses_valg_2);
     
     while (oplevelses_valg < 1 || oplevelses_valg > 3){
-        printf("Vælg venligst mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: \n");
+        printf("\nVælg venligst mellem 1, 2 og 3: [1=Landskab, 2=Historisk, 3=Vand]: \n");
         scanf(" %d", &oplevelses_valg);
     }
 
     filtrer_oplevelse(by_array, antal_byer, oplevelses_valg); //&midl_antal_byer kommer fra *ny_antal_byer
     //oplevelse slut
-
-    printf("\n");
 
     //printer vores recommendations
     for (int i = 0; i < *antal_byer; i++){
@@ -102,18 +98,26 @@ void filtrer_byer(By by_array[], int *antal_byer){
     if (*antal_byer > 1){
         filtrer_oplevelse(by_array, antal_byer, oplevelses_valg_2);
     }
-    
-    //VI SKAL NOK FINDE DET BEDSTE MATCH OG PRINTE CO2 FOR DET KUN. så det ikke er en del af for_loopet
 
-    printf("\n");
+    //hvis der ikke er nogen matches
+    if (*antal_byer < 1){
+        printf("Desværre var der ingen matches. Vil du prøve vores random gem generator?\n1: Ja\n2:Nej\n");
+        scanf(" %d", &random_valg);
+        if (random_valg == 1){
+            print_random_by(BHHBVBJBJBJJBKJNJBJJB);
+        } else {
+            printf("Tak fordi du benyttede vores program\n");
+        }
+    }
+    
+
 
     //beregner co2_udledning
-    
-    printf("Hvordan ønsker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
+    printf("\nHvordan ønsker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
     scanf(" %d", &transportmiddel);
 
     while (transportmiddel < 1 || transportmiddel > 4){
-        printf("Ugyldig værdi. Vælg fra listen:\n1: fly\n2: bus\n3: elbil\n4: tog\n");
+        printf("\nUgyldig værdi. Vælg fra listen:\n1: fly\n2: bus\n3: elbil\n4: tog\n");
         scanf(" %d", &transportmiddel);
     }
 
@@ -121,15 +125,12 @@ void filtrer_byer(By by_array[], int *antal_byer){
         //hvis man vælger fly skal man også fra lufthavnen til hidden gem
          if (transportmiddel == 1){
             co2 = beregn_co2_udledning(by_array[i].km_DK_Vluft, transportmiddel);
-            printf("Hvordan ønsker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by_array[i].navn);
+            printf("\nHvordan ønsker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by_array[i].navn);
             scanf(" %d", &transportmiddel_2);
             co2 += beregn_co2_udledning(by_array[i].km_Vluft_by, transportmiddel_2);
         } else {
            co2 = beregn_co2_udledning(by_array[i].km_DK_by, transportmiddel);
         } 
-    
-    
-    printf("\n");
 
     // et træ absorberer ca 20 kg  C02 pr år. Det er omskrevet til gram, derfor 20.000.
     int antal_traer = co2 / 20000;
