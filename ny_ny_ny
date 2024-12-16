@@ -71,11 +71,13 @@ void filtrer_byer(By by_array[], int *antal_byer){
     }
 
     //vælg budget
-    printf("\nVælg prisklasse:\n1: budget\n2: mellemklasse\n3: luksus\n");
+    printf("\nVælg prisklasse:\n1: budget(5000-10.000 DKK)\n2: mellemklasse(10.000-18.000 DKK)");
+    printf("\n3: luksus(18.000+)\n");
     scanf(" %d", &prisklasse);
 
     while (prisklasse < 1 || prisklasse > 3){
-        printf("\nUgyldig værdi. Venligst vælg fra listen:\n1: budget\n2: mellemklasse\n3: luksus\n");
+        printf("\nUgyldig værdi. Venligst vælg fra listen:\n1: budget(5000-10.000 DKK)\n2: mellemklasse(10.000-18.000 DKK)");
+        printf("\n3: luksus(18.000+)\n");
         scanf(" %d", &prisklasse);
     }
 
