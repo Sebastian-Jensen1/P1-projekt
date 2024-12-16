@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-
 #define ANTAL_BYER 100
 
 typedef struct {
@@ -100,53 +99,12 @@ void filtrer_byer(By by_array[], int *antal_byer){
     }
 
     //by_array går igennem de tre filtre
-    printf("antal byer indlæst: %d\n", *antal_byer);
     qsort(by_array, *antal_byer, sizeof(By), Sammenlign_Kilometer);
     filtrer_radius(by_array, antal_byer, radius);
-    printf(" antal byer tilbage radius: %d\n", *antal_byer);
+    filtrer_pris(by_array, antal_byer, prisklasse);
+
+    filtrer_oplevelse(by_array, antal_byer, oplevelsesvalg);
     
-    if (*antal_byer < 1) {
-        printf("\nVi fandt desværre ingen matches.\n");
-        printf("Vil du prøve vores random gem generator?\n1: Ja\n2: Nej\n");
-        scanf(" %d", &random_valg);
-
-        if (random_valg == 1) {
-            random_by = find_random_by(by_array, antal_byer);
-            printf("\nVi foreslår at du rejser til %s.\n", random_by.navn);
-            printf("\n%s er %s\n", random_by.navn, random_by.beskrivelse);
-            print_CO2_beregning(random_by);
-            printf("\nTak for nu\n");
-            exit(EXIT_FAILURE);
-        } else {
-            printf("\nTak for nu\n");
-            exit(EXIT_FAILURE);
-        }
-    } else {
-        filtrer_pris(by_array, antal_byer, prisklasse);
-        printf(" antal byer tilbage pris: %d\n", *antal_byer);
-    }
-
-    if (*antal_byer < 1) {
-        printf("\nVi fandt desværre ingen matches.\n");
-        printf("Vil du prøve vores random gem generator?\n1: Ja\n2: Nej\n");
-        scanf(" %d", &random_valg);
-
-        if (random_valg == 1) {
-            random_by = find_random_by(by_array, antal_byer);
-            printf("\nVi foreslår at du rejser til %s.\n", random_by.navn);
-            printf("\n%s er %s\n", random_by.navn, random_by.beskrivelse);
-            print_CO2_beregning(random_by);
-            printf("\nTak for nu\n");
-            exit(EXIT_FAILURE);
-        } else {
-            printf("\nTak for nu\n");
-            exit(EXIT_FAILURE);
-        }
-    } else {
-        filtrer_oplevelse(by_array, antal_byer, oplevelsesvalg);
-        printf(" antal byer tilbage oplev1: %d\n", *antal_byer);
-    }
-
     if (*antal_byer < 1) {
         printf("\nVi fandt desværre intet perfekt match.\n");
         // Giver det bedste bud fra før den blev filtreret af oplev1.
