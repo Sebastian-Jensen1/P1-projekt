@@ -136,6 +136,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
     
     //printer kun for den første by
     print_CO2_beregning(by_array[0]);
+    printf("\nTak for nu\n");
 }
 
 void oplev_funk(By by_array[], int *antal_byer){
