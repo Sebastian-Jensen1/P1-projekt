@@ -1,58 +1,58 @@
 Index,By,Prisniveau,km_til_Venedig,Oplev_1,Oplev_2,km_DK_by,km_DK_Vluft,km_Vluft_by
-1,Bassano del Grappa,Mellemklasse,60,Historisk,Aktiv,1505,1485,55
-2,Chioggia,Budget,52,Vand,Afslapning,1510,1490,42
-3,Vicenza,Luksus,80,Historisk,Mad og vin,1490,1490,70
+1,Bassano del Grappa,Mellemklasse,60,Historisk,Aktiv,1505,1500,55
+2,Chioggia,Budget,52,Vand,Afslapning,1510,1500,42
+3,Vicenza,Luksus,80,Historisk,Mad og vin,1490,1500,70
 4,Rovigo,Budget,55,Landskab,Mad og vin,1510,1500,50
-5,Padova,Mellemklasse,30,Landskab,Mad og vin,1495,1485,25
-6,Treviso,Mellemklasse,40,Landskab,Mad og vin,1500,1485,30
-7,Jesolo,Mellemklasse,30,Vand,Afslapning,1470,1465,25
-8,Belluno,Budget,80,Historisk,Aktiv,1530,1515,75
-9,Asolo,Luksus,50,Landskab,Mad og vin,1495,1485,40
-10,Monselice,Budget,45,Historisk,Mad og vin,1500,1480,35
-11,San Donà di Piave,Budget,27,Historisk,Afslapning,1510,1490,22
+5,Padova,Mellemklasse,30,Landskab,Mad og vin,1495,1500,25
+6,Treviso,Mellemklasse,40,Landskab,Mad og vin,1500,1500,30
+7,Jesolo,Mellemklasse,30,Vand,Afslapning,1470,1500,25
+8,Belluno,Budget,80,Historisk,Aktiv,1530,1500,75
+9,Asolo,Luksus,50,Landskab,Mad og vin,1495,1500,40
+10,Monselice,Budget,45,Historisk,Mad og vin,1500,1500,35
+11,San Donà di Piave,Budget,27,Historisk,Afslapning,1510,1500,22
 12,Montagnana,Budget,70,Historisk,Mad og vin,1520,1500,60
-13,Murano,Luksus,2,Vand,Afslapning,1452,1450,1
-14,Burano,Luksus,7,Vand,Afslapning,1455,1450,6
-15,Torcello,Luksus,10,Vand,Afslapning,1455,1450,7
-16,Mira,Luksus,20,Landskab,Afslapning,1475,1465,15
-17,Dolo,Luksus,25,Landskab,Afslapning,1475,1465,20
-18,Cittadella,Luksus,60,Historisk,Mad og vin,1500,1490,50
-19,Marostica,Luksus,70,Historisk,Mad og vin,1510,1490,60
-20,Conegliano,Mellemklasse,50,Landskab,Mad og vin,1490,1480,45
-21,Portogruaro,Luksus,55,Historisk,Mad og vin,1495,1480,50
-22,Abano Terme,Luksus,45,Landskab,Afslapning,1485,1475,40
-23,Lido di Venezia,Luksus,10,Vand,Afslapning,1450,1450,8
-24,Spinea,Luksus,15,Landskab,Mad og vin,1455,1450,12
-25,Oderzo,Budget,25,Historisk,Mad og vin,1485,1470,20
-26,Castelfranco Veneto,Luksus,45,Historisk,Mad og vin,1500,1480,35
-27,Caorle,Luksus,60,Vand,Afslapning,1485,1475,50
-28,Sottomarina,Luksus,25,Vand,Afslapning,1465,1455,20
-29,Feltre,Mellemklasse,90,Historisk,Aktiv,1530,1510,80
-30,Este,Budget,45,Landskab,Mad og vin,1485,1470,40
-31,Adria,Budget,55,Historisk,Mad og vin,1490,1475,45
-32,Arquà Petrarca,Luksus,55,Historisk,Mad og vin,1495,1480,50
-33,Rimini,Luksus,100,Vand,Afslapning,1470,1455,95
-34,Montebelluna,Mellemklasse,50,Landskab,Aktiv,1495,1480,45
-35,Vittorio Veneto,Mellemklasse,75,Historisk,Aktiv,1530,1505,70
+13,Murano,Luksus,2,Vand,Afslapning,1452,1500,1
+14,Burano,Luksus,7,Vand,Afslapning,1455,1500,6
+15,Torcello,Luksus,10,Vand,Afslapning,1455,1500,7
+16,Mira,Luksus,20,Landskab,Afslapning,1475,1500,15
+17,Dolo,Luksus,25,Landskab,Afslapning,1475,1500,20
+18,Cittadella,Luksus,60,Historisk,Mad og vin,1500,1500,50
+19,Marostica,Luksus,70,Historisk,Mad og vin,1510,1500,60
+20,Conegliano,Mellemklasse,50,Landskab,Mad og vin,1490,1500,45
+21,Portogruaro,Luksus,55,Historisk,Mad og vin,1495,1500,50
+22,Abano Terme,Luksus,45,Landskab,Afslapning,1485,1500,40
+23,Lido di Venezia,Luksus,10,Vand,Afslapning,1450,1500,8
+24,Spinea,Luksus,15,Landskab,Mad og vin,1455,1500,12
+25,Oderzo,Budget,25,Historisk,Mad og vin,1485,1500,20
+26,Castelfranco Veneto,Luksus,45,Historisk,Mad og vin,1500,1500,35
+27,Caorle,Luksus,60,Vand,Afslapning,1485,1500,50
+28,Sottomarina,Luksus,25,Vand,Afslapning,1465,1500,20
+29,Feltre,Mellemklasse,90,Historisk,Aktiv,1530,1500,80
+30,Este,Budget,45,Landskab,Mad og vin,1485,1500,40
+31,Adria,Budget,55,Historisk,Mad og vin,1490,1500,45
+32,Arquà Petrarca,Luksus,55,Historisk,Mad og vin,1495,1500,50
+33,Rimini,Luksus,100,Vand,Afslapning,1470,1500,95
+34,Montebelluna,Mellemklasse,50,Landskab,Aktiv,1495,1500,45
+35,Vittorio Veneto,Mellemklasse,75,Historisk,Aktiv,1530,1500,70
 36,San Vito al Tagliamento,Luksus,75,Historisk,Mad og vin,1515,1500,70
-37,Lonigo,Budget,70,Historisk,Mad og vin,1510,1490,60
-38,Cison di Valmarino,Mellemklasse,60,Historisk,Aktiv,1505,1485,55
-39,Follina,Luksus,52,Vand,Afslapning,1510,1490,42
-40,Refrontolo,Budget,45,Landskab,Mad og vin,1515,1505,50
-41,San Pietro di Feletto,Luksus,55,Landskab,Afslapning,1495,1485,48
-42,Valdobbiadene,Luksus,70,Landskab,Mad og vin,1500,1490,60
-43,Montegalda,Mellemklasse,65,Landskab,Aktiv,1500,1485,55
-44,Caldogno,Budget,50,Historisk,Mad og vin,1495,1480,45
-45,Noventa Vicentina,Luksus,80,Historisk,Mad og vin,1490,1485,65
-46,Villafranca Padovana,Mellemklasse,35,Landskab,Mad og vin,1495,1485,30
-47,Albignasego,Luksus,30,Landskab,Mad og vin,1500,1490,25
-48,Pieve di Soligo,Mellemklasse,45,Landskab,Mad og vin,1495,1485,40
-49,Cordignano,Budget,60,Landskab,Mad og vin,1505,1495,55
-50,Miane,Luksus,75,Landskab,Mad og vin,1500,1490,65
-51,Tarzo,Budget,65,Landskab,Afslapning,1495,1485,60
-52,San Fior,Mellemklasse,40,Landskab,Mad og vin,1490,1480,35
-53,Motta di Livenza,Luksus,50,Landskab,Mad og vin,1505,1495,45
-54,Quinto di Treviso,Budget,30,Landskab,Mad og vin,1490,1485,25
-55,Scorzè,Luksus,50,Landskab,Afslapning,1495,1485,40
-56,Martellago,Mellemklasse,25,Landskab,Mad og vin,1490,1480,20
-57,Noale,Luksus,40,Landskab,Mad og vin,1500,1485,30
+37,Lonigo,Budget,70,Historisk,Mad og vin,1510,1500,60
+38,Cison di Valmarino,Mellemklasse,60,Historisk,Aktiv,1505,1500,55
+39,Follina,Luksus,52,Vand,Afslapning,1510,1500,42
+40,Refrontolo,Budget,45,Landskab,Mad og vin,1515,1500,50
+41,San Pietro di Feletto,Luksus,55,Landskab,Afslapning,1495,1500,48
+42,Valdobbiadene,Luksus,70,Landskab,Mad og vin,1500,1500,60
+43,Montegalda,Mellemklasse,65,Landskab,Aktiv,1500,1500,55
+44,Caldogno,Budget,50,Historisk,Mad og vin,1495,1500,45
+45,Noventa Vicentina,Luksus,80,Historisk,Mad og vin,1490,1500,65
+46,Villafranca Padovana,Mellemklasse,35,Landskab,Mad og vin,1495,1500,30
+47,Albignasego,Luksus,30,Landskab,Mad og vin,1500,1500,25
+48,Pieve di Soligo,Mellemklasse,45,Landskab,Mad og vin,1495,1500,40
+49,Cordignano,Budget,60,Landskab,Mad og vin,1505,1500,55
+50,Miane,Luksus,75,Landskab,Mad og vin,1500,1500,65
+51,Tarzo,Budget,65,Landskab,Afslapning,1495,1500,60
+52,San Fior,Mellemklasse,40,Landskab,Mad og vin,1490,1500,35
+53,Motta di Livenza,Luksus,50,Landskab,Mad og vin,1505,1500,45
+54,Quinto di Treviso,Budget,30,Landskab,Mad og vin,1490,1500,25
+55,Scorzè,Luksus,50,Landskab,Afslapning,1495,1500,40
+56,Martellago,Mellemklasse,25,Landskab,Mad og vin,1490,1500,20
+57,Noale,Luksus,40,Landskab,Mad og vin,1500,1500,30
