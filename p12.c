@@ -66,9 +66,13 @@ void filtrer_byer(By by_array[], int *antal_byer){
     printf("\nHvor langt må byen være fra Venedig?\n1: 5-30 km\n2: 31-60 km\n3: 61+ km\n");
     scanf(" %d", &radius);
 
-    while (radius < 1 || radius > 3){
+    //check for ugyldigt input
+    while (radius != 1 && radius != 2 && radius != 3) {
         printf("\nUgyldig værdi. Venligst vælg fra listen:\n1: 5-30 km\n2: 31-60 km\n3: 61+ km\n");
         scanf(" %d", &radius);
+
+        //hvis man taster andet end 1, 2 eller
+        while(getchar() != '\n');  // Fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
     }
 
     //vælg budget
@@ -76,19 +80,26 @@ void filtrer_byer(By by_array[], int *antal_byer){
     printf("\n3: luksus(18.000+)\n");
     scanf(" %d", &prisklasse);
 
-    while (prisklasse < 1 || prisklasse > 3){
-        printf("\nUgyldig værdi. Venligst vælg fra listen:\n1: budget(5000-10.000 DKK)\n2: mellemklasse(10.000-18.000 DKK)");
-        printf("\n3: luksus(18.000+)\n");
+    //check for ugyldigt input
+    while (prisklasse != 1 && prisklasse != 2 && prisklasse != 3) {
+        printf("\nUgyldig værdi. Venligst vælg fra listen:\n1: budget(5000-10.000 DKK)\n2: mellemklasse(10.000-18.000 DKK\n3: luksus(18.000+)\n");
         scanf(" %d", &prisklasse);
+
+        //hvis man taster andet end 1, 2 eller
+        while(getchar() != '\n');  // Fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
     }
 
     //vælger oplevelse og opdaterer by_array med byer som opfylder kriteriet
     printf("\nHvilke omgivelser ønsker du mest?\n1: Smukke landskaber\n2: Historiske seværdigheder\n3: Aktiviteter ved vandet\n");
     scanf(" %d", &oplevelsesvalg);
     
-    while (oplevelsesvalg < 1 || oplevelsesvalg > 3){
+    //check for ugyldigt input
+    while (oplevelsesvalg != 1 && oplevelsesvalg != 2 && oplevelsesvalg != 3) {
         printf("\nVælg venligst fra listen:\n1: Smukke landskaber\n2: Historiske seværdigheder\n3: Aktiviteter ved vandet\n");
         scanf(" %d", &oplevelsesvalg);
+
+        //hvis man taster andet end 1, 2 eller
+        while(getchar() != '\n');  // Fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
     }
     
     //oplevelses_valg_2 bruges hvis der er mere end én by tilbage, når by_array har været igennem de øvrige filtreringsfunktioner
@@ -96,9 +107,13 @@ void filtrer_byer(By by_array[], int *antal_byer){
     printf("\nHvad går du mest op i at lave på din rejse:\n1: Aktive oplevelser\n2: Afslapning\n3: Kulinariske oplevelser\n");
     scanf(" %d", &oplevelsesvalg_2);
 
-    while (oplevelsesvalg_2 < 1 || oplevelsesvalg_2 > 3){
+    //check for ugyldigt input
+    while (oplevelsesvalg_2 != 1 && oplevelsesvalg_2 != 2 && oplevelsesvalg_2 != 3) {
         printf("\nVælg venligst fra listen:\n1: Aktive oplevelser\n2: Afslapning\n3: Kulinariske oplevelser\n");
         scanf(" %d", &oplevelsesvalg_2);
+
+        //hvis man taster andet end 1, 2 eller
+        while(getchar() != '\n');  // Fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
     }
 
     //by_array går igennem de tre filtre
