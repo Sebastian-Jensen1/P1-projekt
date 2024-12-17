@@ -117,11 +117,10 @@ void filtrer_byer(By by_array[], int *antal_byer){
     }
 
     //by_array går igennem de tre filtre
-    qsort(by_array, *antal_byer, sizeof(By), Sammenlign_Kilometer);
     filtrer_radius(by_array, antal_byer, radius);
     filtrer_pris(by_array, antal_byer, prisklasse);
-
     filtrer_oplevelse(by_array, antal_byer, oplevelsesvalg);
+    qsort(by_array, *antal_byer, sizeof(By), Sammenlign_Kilometer);
     
     if (*antal_byer < 1) {
         oplev_funk(by_array, antal_byer);
@@ -148,29 +147,46 @@ void oplev_funk(By by_array[], int *antal_byer){
     // Giver det bedste bud fra før den blev filtreret af oplev1 og derefter oplev2
     printf("%s er et muligt match.\n", by_array[0].navn);
     printf("%s er %s\n",by_array[0].navn, by_array[0].beskrivelse);
-    printf("\nVirker dette interessant for dig?\n1: Ja\n2: Nej\n ");
+    printf("\nVirker dette interessant for dig?\n1: Ja\n2: Nej\n");
     scanf("%d", &alternativ);
+
+    while (alternativ != 1 && alternativ != 2){
+        printf("\nVælg fra listen:\n1: Ja\n2: Nej\n");
+        //hvis man taster andet end 1 eller 2
+        while(getchar() != '\n');  //fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
+        scanf(" %d", &alternativ);
+    }
+
     if (alternativ == 1){
         print_CO2_beregning(by_array[0]);
         printf("\nTak for nu\n");
         exit(EXIT_FAILURE);
-    }
-    printf("Alternativt, du prøve vores random gem generator?\n1: Ja\n2: Nej\n");
-    scanf(" %d", &random_valg);
+    } else if (alternativ == 2){
+        printf("\nVil du prøve vores random gem generator?\n1: Ja\n2: Nej\n");
+        scanf(" %d", &random_valg);
 
-    if (random_valg == 1) {
+        while (random_valg != 1 && random_valg != 2){
+        printf("\nVælg fra listen:\n1: Ja\n2: Nej\n");
+        //hvis man taster andet end 1 eller 2
+        while(getchar() != '\n');  //fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
+        scanf(" %d", &random_valg);
+    }
+        
+        if (random_valg == 1) {
         random_by = find_random_by(by_array, antal_byer);
         printf("\nVi foreslår at du rejser til %s.\n", random_by.navn);
         printf("\n%s er %s\n", random_by.navn, random_by.beskrivelse);
         print_CO2_beregning(random_by);
         printf("\nTak for nu\n");
         exit(EXIT_FAILURE);
-    } else {
-        printf("\nTak for nu\n");
-        exit(EXIT_FAILURE);
+        } else {
+            printf("\nTak for nu\n");
+            exit(EXIT_FAILURE);
     }
+    }
+    
+    
 } 
-
 
 //funktion til at udskrive random by
 By find_random_by(By by_array[], int *antal_byer){
@@ -261,8 +277,10 @@ void print_CO2_beregning(By by){
     printf("\nHvordan ønsker du at rejse?\n1: fly\n2: bus\n3: elbil\n4: tog\n");
     scanf(" %d", &transportmiddel_1);
 
-    while (transportmiddel_1 < 1 || transportmiddel_1 > 4){
+    while (transportmiddel_1 != 1 && transportmiddel_1 != 2 && transportmiddel_1 != 3 && transportmiddel_1 != 4){
         printf("\nUgyldig værdi. Vælg fra listen:\n1: fly\n2: bus\n3: elbil\n4: tog\n");
+        //hvis man taster andet end 1, 2 eller
+        while(getchar() != '\n');  // Fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
         scanf(" %d", &transportmiddel_1);
     }
     
@@ -272,8 +290,10 @@ void print_CO2_beregning(By by){
         printf("\nHvordan ønsker du at komme fra Venedig lufthavn til %s?\n2: bus\n3: elbil\n4: tog\n", by.navn);
         scanf(" %d", &transportmiddel_2);
 
-        while (transportmiddel_2 < 2 || transportmiddel_2 > 4){
-            printf("Vælg fra listen:\n\n2: bus\n3: elbil\n4: tog\n");
+        while (transportmiddel_2 != 2 && transportmiddel_2 != 3 && transportmiddel_2 != 4){
+            printf("\nUgyldig værdi. Vælg fra listen:\n\n2: bus\n3: elbil\n4: tog\n");
+            //hvis man taster andet end 1, 2 eller
+            while(getchar() != '\n');  // Fjerner resten af inputtet (fx bogstaver eller ekstra tegn)
             scanf(" %d", &transportmiddel_2);
         }
 
