@@ -20,7 +20,7 @@ typedef struct {
 } By;
 
 void filtrer_byer(By by_array[], int *antal_byer);
-void oplev_funk(By by_array[], int *antal_byer);
+void bedste_by_match(By by_array[], int *antal_byer);
 By find_random_by(By by_array[], int *antal_byer);
 By *filtrer_pris(By by_array[], int *antal_byer, int prisklasse);
 By *filtrer_radius(By by_array[], int *antal_byer, int valg_radius);
@@ -128,13 +128,13 @@ void filtrer_byer(By by_array[], int *antal_byer){
     qsort(by_array, *antal_byer, sizeof(By), Sammenlign_Kilometer);
     
     if (*antal_byer < 1) {
-        oplev_funk(by_array, antal_byer);
+        bedste_by_match(by_array, antal_byer);
     } else {
         filtrer_oplevelse2(by_array, antal_byer, oplevelsesvalg_2);
     }
     
     if (*antal_byer < 1) {
-        oplev_funk(by_array, antal_byer);
+        bedste_by_match(by_array, antal_byer);
     } 
     printf("\nVi foreslår at du rejser til %s.\n", by_array[0].navn);
     printf("\n%s er %s\n",by_array[0].navn, by_array[0].beskrivelse);
@@ -144,7 +144,7 @@ void filtrer_byer(By by_array[], int *antal_byer){
     printf("\nTak for nu\n");
 }
 
-void oplev_funk(By by_array[], int *antal_byer){
+void bedste_by_match(By by_array[], int *antal_byer){
     int alternativ;
     int random_valg;
     By random_by;
